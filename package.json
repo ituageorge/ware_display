@@ -1,0 +1,22 @@
+{
+  "name": "ware-display",
+  "version": "1.0.0",
+  "description": "e_commerce",
+  "main": "index.js",
+  "scripts": {
+   "start": "node backend/server.js",
+   "dev" : "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
+   "prod" : "SET NODE_ENV=PRODUCTION& nodemon backend/server"
+
+  },
+  "author": "George Osagie Itua",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.2.0",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
