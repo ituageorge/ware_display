@@ -1,0 +1,282 @@
+[
+{
+    "name": "Hp Laptop Product",
+    "price": 9.99,
+    "description": "This is an example product description.",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://beauty/health.com/image1.jpg"
+      },
+      {
+        "public_id": "image2",
+        "url": "https://beauty/health.com/image2.jpg"
+      }
+    ],
+    "category": "Beauty/Health",
+    "seller": "Example Seller",
+    "stock": 10,
+    "numberOfReviews": 3,
+    "reviews": [
+      {
+        "name": "John",
+        "rating": 4,
+        "comment": "Great product!"
+      },
+      {
+        "name": "Jane",
+        "rating": 5,
+        "comment": "Excellent quality!"
+      },
+      {
+        "name": "Alex",
+        "rating": 3,
+        "comment": "Could be better."
+      }
+    ]
+  },
+  {
+    "name": "Men's Running Shoes",
+    "price": 79.99,
+    "description": "High-performance running shoes designed for comfort and durability.",
+    "ratings": 4.6,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://example.com/clothes-shoes/image1.jpg"
+      },
+      {
+        "public_id": "image2",
+        "url": "https://example.com/clothes-shoes/image2.jpg"
+      }
+    ],
+    "category": "Clothes/Shoes",
+    "seller": "Sportswear Co.",
+    "stock": 50,
+    "numberOfReviews": 7,
+    "reviews": [
+      {
+        "name": "John",
+        "rating": 5,
+        "comment": "Great running shoes! Excellent support and cushioning."
+      },
+      {
+        "name": "Emily",
+        "rating": 4,
+        "comment": "Very comfortable for long runs."
+      },
+      {
+        "name": "Michael",
+        "rating": 4.5,
+        "comment": "Good quality shoes at a reasonable price."
+      }
+    ],
+    "createdAt": "2023-06-22T16:45:00.000Z"
+  },
+  {
+    "name": "Outdoor Product",
+    "price": 9.99,
+    "description": "This is an example product description.",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://outdoor.com/image1.jpg"
+      }
+    ],
+    "category": "Outdoor",
+    "seller": "Outdoor Seller",
+    "stock": 10,
+    "numberOfReviews": 6,
+    "reviews": [
+      {
+        "name": "Tope",
+        "rating": 4,
+        "comment": "Great product!"
+      },
+      {
+        "name": "Kelvin",
+        "rating": 5,
+        "comment": "Excellent quality!"
+      },
+      {
+        "name": "Fasehun",
+        "rating": 3,
+        "comment": "Could be better."
+      },
+      {
+        "name": "Jonathan",
+        "rating": 4.5,
+        "comment": "Great product!"
+      },
+      {
+        "name": "Janet",
+        "rating": 5,
+        "comment": "Amazing quality!"
+      },
+      {
+        "name": "Alexandra",
+        "rating": 0,
+        "comment": "Could be lit."
+      }
+    ]
+  },
+  {
+    "name": "Basketball",
+    "price": 24.99,
+    "description": "A high-quality basketball suitable for indoor and outdoor use.",
+    "ratings": 4.8,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://example.com/sports/image1.jpg"
+      },
+      {
+        "public_id": "image2",
+        "url": "https://example.com/sports/image2.jpg"
+      }
+    ],
+    "category": "Sports",
+    "seller": "SportsGear Inc.",
+    "stock": 20,
+    "numberOfReviews": 10,
+    "reviews": [
+      {
+        "name": "Alex",
+        "rating": 5,
+        "comment": "Excellent basketball! Great grip and durability."
+      },
+      {
+        "name": "Sarah",
+        "rating": 4,
+        "comment": "Perfect for outdoor games. Highly recommend."
+      },
+      {
+        "name": "Mike",
+        "rating": 4.5,
+        "comment": "Good quality and value for the price."
+      }
+    ],
+    "createdAt": "2023-06-22T14:30:00.000Z"
+  }
+  ,
+  {
+    "name": "The Great Gatsby",
+    "price": 12.99,
+    "description": "A classic novel by F. Scott Fitzgerald that explores the decadence and illusions of the 1920s Jazz Age.",
+    "ratings": 4.7,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://example.com/books/image1.jpg"
+      },
+      {
+        "public_id": "image2",
+        "url": "https://example.com/books/image2.jpg"
+      }
+    ],
+    "category": "Books",
+    "seller": "Bookstore Online",
+    "stock": 30,
+    "numberOfReviews": 15,
+    "reviews": [
+      {
+        "name": "Emma",
+        "rating": 5,
+        "comment": "An absolute masterpiece! The writing is captivating."
+      },
+      {
+        "name": "James",
+        "rating": 4,
+        "comment": "A classic that beautifully depicts the Jazz Age."
+      },
+      {
+        "name": "Olivia",
+        "rating": 4.5,
+        "comment": "The characters are intriguing, and the story is thought-provoking."
+      }
+    ],
+    "createdAt": "2023-06-22T11:15:00.000Z"
+  },  
+  {
+    "name": "Organic Granola Bars",
+    "price": 5.99,
+    "description": "Delicious and healthy organic granola bars made with all-natural ingredients.",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "image1",
+        "url": "https://example.com/food/image1.jpg"
+      },
+      {
+        "public_id": "image2",
+        "url": "https://example.com/food/image2.jpg"
+      }
+    ],
+    "category": "Food",
+    "seller": "Healthy Bites",
+    "stock": 100,
+    "numberOfReviews": 8,
+    "reviews": [
+      {
+        "name": "Lisa",
+        "rating": 5,
+        "comment": "These granola bars are my favorite! Highly recommend them."
+      },
+      {
+        "name": "Michael",
+        "rating": 4,
+        "comment": "Tasty and nutritious snack option."
+      },
+      {
+        "name": "Sophia",
+        "rating": 4.5,
+        "comment": "Perfect for on-the-go and packed with goodness."
+      }
+    ],
+    "createdAt": "2023-06-21T09:45:00.000Z"
+  },
+  {
+    
+        "name": "Wireless Bluetooth Headphones",
+        "price": 49.99,
+        "description": "These wireless Bluetooth headphones provide high-quality sound and are compatible with various devices.",
+        "ratings": 4.8,
+        "images": [
+          {
+            "public_id": "image1",
+            "url": "https://example.com/headphones/image1.jpg"
+          },
+          {
+            "public_id": "image2",
+            "url": "https://example.com/headphones/image2.jpg"
+          }
+        ],
+        "category": "Headphones",
+        "seller": "AudioTech",
+        "stock": 50,
+        "numberOfReviews": 12,
+        "reviews": [
+          {
+            "name": "Sarah",
+            "rating": 5,
+            "comment": "Amazing sound quality and comfortable to wear."
+          },
+          {
+            "name": "Mark",
+            "rating": 4,
+            "comment": "Good value for the price."
+          },
+          {
+            "name": "Emily",
+            "rating": 4.5,
+            "comment": "Sleek design and easy to connect."
+          }
+        ],
+        "createdAt": "2023-06-20T10:30:00.000Z"
+      }
+      
+]
+
+  
