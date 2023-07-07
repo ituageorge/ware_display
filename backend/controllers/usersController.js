@@ -3,6 +3,7 @@ const ErrorHandler = require('../utils/errorHandler')
 // const catchAsyncError = require('../middlewares/catchAsyncErrors');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtTokens');
+const sendEmail = require('../utils/sendEmail')
 
 //Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -45,6 +46,52 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
     // const token = foundUser.getJwtToken();
    sendToken(foundUser, 200, res)
+})
+
+// Forget Password  => /api/v1/password/forgot
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email})
+
+    if(!user) {
+        return next(new ErrorHandler('User not found with email', 404));
+    }
+
+    // get reset token
+    const resetToken = user.generateResetPasswordToken();
+    await user.save({ validateBeforeSave: false})
+
+    // create reset password url
+    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you not requested this email, then ignore it.`
+
+    try {
+
+        await sendEmail({
+            email: user.email,
+            subject:'Password Reset Link for ware display!',
+            message,
+        })
+
+        res.status(200).json({
+            success :true,
+            message: `Email sent to: ${user.email}`
+        })
+        
+    } catch (error) {
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+
+        await user.save({ validateBeforeSave: false});
+        return next(new ErrorHandler(error.message, 500))
+    }
+        // console.log(`Forgot Password Request for ${req.query}`)
+        // const resetPassUrl=`http://localhost:${process.env.PORT}/reset-password/${
+        //     crypto
+        //     .createHash('sha256')
+        //     .update((Math.random() * Math.pow(36, 8)).toString
+        //     )
+        //     .digest('hex')}?email=${encodeURIComponent(
+
 })
 
 // logout user => /api/v1/logout
