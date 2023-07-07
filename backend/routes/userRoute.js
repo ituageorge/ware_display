@@ -6,7 +6,8 @@ const {registerUser,
       forgotPassword,
        resetPassword,
         getUserDetails,
-         changeUserPasswordWhileLoggedIn} = require('../controllers/usersController');
+         changeUserPasswordWhileLoggedIn,
+         updateUserProfile} = require('../controllers/usersController');
 const {loginUser } = require('../controllers/usersController');
 
 const {isAuthenticatedUser } = require('../middlewares/userAuth')
@@ -19,6 +20,7 @@ router.route('/password/reset/:token').put(resetPassword)
 
 router.route('/me').get( isAuthenticatedUser, getUserDetails);
 router.route('/password/update').put(isAuthenticatedUser, changeUserPasswordWhileLoggedIn);
+router.route('/me/update').put(isAuthenticatedUser, updateUserProfile);
 
 
 router.route('/logout').get(logout);

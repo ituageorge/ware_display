@@ -149,8 +149,26 @@ exports.changeUserPasswordWhileLoggedIn = catchAsyncErrors(async (req,res,next)=
     await user.save()
 
     sendToken(user, 200, res )
+})
 
+// Update user profile => /api/v1/me/update
+exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
+    const newUser = {
+        name : req.body.name || "",
+        email : req.body.email || ""
+    }
 
+    const user = await User.findByIdAndUpdate(req.user.id, newUser, {
+        new: true,
+        runValidators:true,
+        useFindAndModify: false
+    })
+
+    // Update avatar: TODO
+
+    res.status(200).json({
+        success: true
+    })
 })
 
 // logout user => /api/v1/logout
