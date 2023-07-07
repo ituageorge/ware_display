@@ -124,6 +124,34 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     sendToken(user, 200, res)
 })
 
+// Get currently logged in user details => /api/v1/me
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+        success: true,
+        user
+    })
+
+})
+
+// Change user password while logged in => /api/v1/password/update
+exports.changeUserPasswordWhileLoggedIn = catchAsyncErrors(async (req,res,next)=>{
+    const user = await User.findById(req.user.id).select('+password');
+
+    // check previous user password
+    const isMatched = await user.comparePassword(req.body.oldPassword)
+    if(!isMatched) {
+        return next(new ErrorHandler("Incorrect old Password",400))
+    }
+    // update the current users's password with a new one
+    user.password = req.body.password;
+    await user.save()
+
+    sendToken(user, 200, res )
+
+
+})
 
 // logout user => /api/v1/logout
     exports.logout = catchAsyncErrors(async (req, res, next) => {
