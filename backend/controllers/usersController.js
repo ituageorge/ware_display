@@ -184,3 +184,31 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
         })
 
     })
+
+    // Admin routes
+    // for managing all Users in DB => /api/v1/admin/users
+    exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+        const users = await User.find();
+        res.status(200).json({
+            success: true,
+            users,
+            totalCount: users.length,
+            currentPageNumber: parseInt(req.query.page),
+            itemsPerPage: 5  
+        })
+    })
+
+    // Get user details => /api/v1/admin/user/:id
+    exports.adminGetsUserDetails = catchAsyncErrors(async (req, res, next) => {
+        const user = await User.findById(req.params.id);
+
+        if(!user) {
+            return next(new ErrorHandler(`User not found with id: ${req.params.id}`))
+        }
+        res.status(200).json({
+            success: true,
+            user
+        })
+    })
+
+    
