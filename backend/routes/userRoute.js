@@ -9,7 +9,9 @@ const {registerUser,
          changeUserPasswordWhileLoggedIn,
          updateUserProfile,
          adminGetsUserDetails,
-         allUsers} = require('../controllers/usersController');
+         adminUpdateUser,
+         allUsers,
+         deleteUser} = require('../controllers/usersController');
 const {loginUser } = require('../controllers/usersController');
 
 const {isAuthenticatedUser, authorizeRoles } = require('../middlewares/userAuth')
@@ -28,7 +30,12 @@ router.route('/me/update').put(isAuthenticatedUser, updateUserProfile);
 router.route('/logout').get(logout);
 
 router.route('/admin/users').get(isAuthenticatedUser, authorizeRoles('admin'), allUsers)
-router.route('/admin/user/:id').get(isAuthenticatedUser, authorizeRoles('admin'), adminGetsUserDetails)
+router.route('/admin/user/:id')
+        .get(isAuthenticatedUser, authorizeRoles('admin'), adminGetsUserDetails)
+        .put(isAuthenticatedUser, authorizeRoles('admin'), adminUpdateUser)
+        .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteUser)
+
+
 
 // adminGetsUserDetails is similar to get getUserDetails
 module.exports=router;
