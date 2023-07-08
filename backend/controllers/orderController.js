@@ -36,3 +36,36 @@ exports.newOrder = catchAsyncErrors( async (req, res , next) => {
      })
 
 })
+
+// Get single order => /api/v1/order/:id
+exports.getSingleOrder = catchAsyncErrors (async (req, res, next) => {
+    const order = await Order.findById(req.params.id).populate('user', 'name email')
+
+    if(!order){
+        return next(new ErrorHandler("No product found with this id", 404))
+    }
+    res.status(200).json({
+        success:true,
+        order,
+        message:"Product retrieved successfully"
+    })
+})
+
+// Get logged in user order => /api/v1/orders/me
+exports.getAUserOrders = catchAsyncErrors (async (req, res, next )=> {
+
+    const orders = await Order.find({
+        user: req.user.id
+    })
+    
+    if (!orders && !orders [0] === undefined ){
+        return next(new ErrorHandler (`User has not placed any orders yet`,
+        404));
+        };
+
+    res.status(200).json({
+        success:true,
+        orders,
+        message:"Product retrieved successfully"
+    })
+})
