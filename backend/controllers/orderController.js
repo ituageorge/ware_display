@@ -69,3 +69,30 @@ exports.getAUserOrders = catchAsyncErrors (async (req, res, next )=> {
         message:"Product retrieved successfully"
     })
 })
+
+// Get all order => /api/v1/admin/orders/
+
+exports.getAllOrders = catchAsyncErrors (async (req, res, next )=> {
+
+    const orders = await Order.find()
+
+    
+    if (!orders && !orders [0] === undefined ){
+        return next(new ErrorHandler (`User has not placed any orders yet`,
+        404));
+        };
+
+        let totalAmount = 0
+        orders.forEach(order => {
+            totalAmount += order.totalPrice
+        })
+
+    res.status(200).json({
+        success:true,
+        count : orders.length ,
+        totalAmount,
+        orders,
+        message:"Product retrieved successfully"
+    })
+})
+
