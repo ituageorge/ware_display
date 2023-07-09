@@ -1,4 +1,5 @@
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
+// const order = require("../models/order");
 const Order = require("../models/order");
 const Product = require("../models/product");
 const ErrorHandler = require("../utils/errorHandler");
@@ -70,7 +71,7 @@ exports.getAUserOrders = catchAsyncErrors (async (req, res, next )=> {
     })
 })
 
-// Get all order => /api/v1/admin/orders/
+// Get all orders - Admin => /api/v1/admin/orders/
 
 exports.getAllOrders = catchAsyncErrors (async (req, res, next )=> {
 
@@ -96,3 +97,57 @@ exports.getAllOrders = catchAsyncErrors (async (req, res, next )=> {
     })
 })
 
+// Update/Process order - ADMIN => /api/v1/admin/order/:id
+
+exports.updateOrder = catchAsyncErrors (async (req, res, next )=> {
+
+    const order = await Order.findById(req.params.id)
+ 
+    if (!order) {
+        return next(new ErrorHandler('Order not found', 404));
+      }
+
+    if (order.orderStatus === 'Delivered') {
+        return next(new ErrorHandler('You have already delivered this order', 400))
+    }
+
+    order.orderItems.forEach(async item => {
+        console.log('itemProduct', item.product)
+        await updateStock(item.product, item.quantity)
+    })
+
+    order.orderStatus = req.body.orderStatus,
+    order.deliveredAt = Date.now()
+
+    await order.save()
+       
+
+    res.status(200).json({
+        success: true,
+        message:'successfully updated'
+    })
+})
+
+// async function updateStock(id, quantity ) {
+//     // get the product from db using id
+//     const product = await Product.findById(id);
+//     product.stock = product.stock - quantity;
+
+//     product.save()
+
+// }
+
+
+async function updateStock(id, quantity) {
+    // Get the product from the database using id
+    const product = await Product.findById(id);
+  
+    if (!product) {
+      throw new ErrorHandler('Product not found', 404);
+    }
+  
+    product.stock = product.stock - quantity;
+  
+    await product.save({ validateBeforeSave: false});
+  }
+  
