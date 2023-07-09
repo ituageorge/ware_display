@@ -36,13 +36,11 @@ const orderSchema = mongoose.Schema({
       },
       quantity: {
         type: Number,
-        default: 1,
-        min: [0, "Quantity must be greater than zero"],
-        max: [256, "Quantity cannot exceed maximum limit"],
+        required: true,
       },
       price: {
         type: Number,
-        require: true,
+        required: true,
         validate(value) {
           if (value <= 0) {
             throw new Error("Price should not be lesser or equal to Zero");
