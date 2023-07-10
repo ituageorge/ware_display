@@ -150,7 +150,56 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
 
 
 })
+
+//    delete Reviews => /api/v1/reviews
+exports.deleteReviews = catchAsyncErrors(async (req, res, next) => {
+
+    const productId = req.query.productId;
+  const reviewId = req.query.id;
+
+    const product = await Product.findById(productId);
+    
+
+    if (!product) {
+        return next(new ErrorHandler("Product not found", 404));
+      }
+    
+    const updatedReviews = product.reviews.filter((review) => review._id.toString() !== reviewId.toString()); 
+
+    const numberOfReviews = updatedReviews.length;
+
+    // reviews = updatedReviews
+
+    const ratings =
+    updatedReviews.reduce((acc, item) => item.rating + acc, 0) /
+    numberOfReviews;
+
+    product.reviews = updatedReviews;
+  product.ratings = ratings;
+  product.numberOfReviews = numberOfReviews;
+
+  await product.save({ validateBeforeSave: false });
+
+    // await Product.findByIdAndUpdate(req.query.productId, {
+    //     reviews,
+    //     ratings,
+    //     numberOfReviews
+    // }, {
+    //     new: true,
+    //     runValidators: true,
+    //     useFindAndModify: false
+    // })
  
+    res.status(200).json({
+     success: true,
+     message:'successfully deleted the Review'
+    
+    })
+ 
+ 
+ })
+ 
+  
 
 
 
